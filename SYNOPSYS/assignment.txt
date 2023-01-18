@@ -1,0 +1,21 @@
+import re
+def main():
+    #file_name = input("Enter file name: ")
+    with open(r'C:\Users\Admin\Desktop\synopsys.txt','r') as fh:
+        for line_num, each_row in enumerate(fh):
+            design = re.search(r'[a-z0-9]+(_d)', each_row)
+            top = re.search(r'(sgem_uhd1p_)+[a-z0-9_]+', each_row)
+            rotation = re.search(r'[A-Z]+(R)+[0-9]+', each_row)
+            Xaxis = re.search(r'(X-)+[0-9]+', each_row)
+            Yaxis = re.search(r'(Y-)+[0-9]+', each_row)
+            dummy = re.search(r'(sgem_hd1p_)+[a-z0-9_]+',each_row)
+
+
+
+            print(f"LINE_NUMBER:{line_num+1}, DESIGN:{design},TOP:{top},ROTATION:{rotation} ,XAXIS :{Xaxis },YXAXIS:{Yaxis},DUMMY:{dummy} ")
+            print()
+            print()
+
+if __name__ == "__main__":
+    main()
+
