@@ -1,0 +1,30 @@
+import re
+
+def regular_exp(file_name):
+    #file_name = input("Enter file name: ")
+    with open(file_name,'r') as fh:
+        for line_num, each_row in enumerate(fh):
+            design = re.search(r'[a-z0-9]+(_d)', each_row)
+            top = re.search(r'((sgem_hd1p_)|(sgem_uhd1p_))+[a-z0-9_]+',each_row)
+            Xaxis = re.search(r'(X-)+[0-9]+', each_row)
+            Yaxis = re.search(r'(Y-)+[0-9]+', each_row)
+            rotation = re.search(r'[A-Z_]+(R)+[0-9]+', each_row)
+            dummy = re.search(r'((sgem_hd1p_)|(sgem_uhd1p_))+[a-z0-9_]+',each_row)
+        
+            if design:
+                print(f"Line_number : {line_num},Design : {design.group()}",end=" ")
+            if top:
+                print("Top :" ,top.group(),end=" ")
+            if rotation:
+                print("Rotation :" ,rotation.group(),end=" ")
+            if Xaxis:
+                print("Xaxis :", Xaxis.group(),end=" ")
+            if Yaxis:
+                print("Yaxis :", Yaxis.group(),end=" ")
+            if dummy:
+                print("Dummy :" ,dummy.group())
+                print()
+
+                
+file_name =r"C:\Users\Admin\Desktop\synopsys.txt"        
+regular_exp(file_name)
